@@ -2,16 +2,20 @@ import React from 'react';
 import Topbar from '../Topbar/Topbar';
 import Header from '../Header/Header';
 import RecentBlogs from '../../Blogs/RecentBlogs/RecentBlogs';
-import Contact from '../Contact/Contact.jsx'
+import WeHave from '../WeHave/WeHave';
+import Contact from '../Contact/Contact.jsx';
+import Footer from '../Footer/Footer';
 
 const Home = () => {
     return (
-        <div>
-            <Topbar/>
-            <Header/>
-            <RecentBlogs/>
-            <Contact/>
-        </div>
+        <>
+            <Topbar />
+            <Header />
+            <RecentBlogs />
+            <WeHave/>
+            <Contact />
+            <Footer />
+        </>
     );
 };
 

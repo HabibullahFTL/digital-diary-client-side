@@ -1,23 +1,25 @@
 import React from 'react';
-import blogImg from '../../../img/blogs.jfif'
+import blogImg from '../../../img/blogs.jfif';
+import { Link } from "react-router-dom";
 
-const BlogCard = () => {
+const BlogCard = ({blogInfo}) => {
+    const {_id,title,description,photo} = blogInfo;
+    const blogTitle = title.slice(0,50);
+    const isTitleLong = title.length > 50 ? true : false;
+    const blogDescription = description.slice(0,150);
+    const isDescriptionLong = description.length > 150 ? true : false;
+    
     return (
         <div className="p-4 md:w-1/3">
             <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                <img className="lg:h-48 md:h-36 w-full object-cover object-center" src={blogImg} alt="blog" />
+                <Link to={"/view-blog/"+_id}>
+                    <img className="lg:h-48 md:h-36 w-full object-cover object-center" src={photo} alt="blog" />
+                </Link>
                 <div className="p-6">
-                    <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
-                    <h1 className="title-font text-lg font-medium text-gray-900 mb-3">The Catalyzer</h1>
-                    <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha bloggish jianbing microdosing tousled waistcoat.</p>
-                    <div className="flex items-center flex-wrap ">
-                        <a className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
-                            <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14"></path>
-                                <path d="M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
+                    <Link to={"/view-blog/"+_id}>
+                        <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{blogTitle}{isTitleLong && <>...</>}</h1>
+                        <p className="leading-relaxed mb-3">{blogDescription}{isTitleLong && <b> [Read More...]</b>}</p>
+                    </Link>
                 </div>
             </div>
         </div>
