@@ -1,12 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home/Home/Home.jsx';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-  Link
+  Redirect
 } from "react-router-dom";
 import Topbar from './components/Home/Topbar/Topbar';
 import Footer from './components/Home/Footer/Footer';

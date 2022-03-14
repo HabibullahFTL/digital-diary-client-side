@@ -27,7 +27,7 @@ const RecentBlogs = () => {
                 <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center mb-10">Recent Blogs</h1>
                 <div className="flex flex-wrap -m-4">
                 {
-                        blogs.map(blog=><BlogCard blogInfo={blog}/>)
+                        blogs.map(blog=><BlogCard blogInfo={blog} key={blog._id}/>)
                     }
                 </div>
                 <div className="button text-center">

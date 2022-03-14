@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { UserContext } from '../../../App';
 import { fileUploadHandle } from '../../Login/loginManager';
+import { Redirect } from "react-router-dom";
 
 const WriteBlog = () => {
     const [userDetails, setUserDetails] = useContext(UserContext);
@@ -86,17 +87,21 @@ const WriteBlog = () => {
                         <div className="flex flex-col text-center w-full mb-5">
                             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Write a blog</h1>
                         </div>
+                        {
+                            !userDetails.isAdmin &&
+                            <Redirect to="/" />
+                        }
 
                         {
                             blogDetails.message &&
-                            <div class="w-2/3 m-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                <span class="block sm:inline">{blogDetails.message}</span>
+                            <div className="w-2/3 m-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <span className="block sm:inline">{blogDetails.message}</span>
                             </div>
                         }
                         {
                             blogDetails.isPublished &&
-                            <div class="w-2/3 m-auto bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                                <span class="block sm:inline">Your blog published!</span>
+                            <div className="w-2/3 m-auto bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                                <span className="block sm:inline">Your blog published!</span>
                             </div>
                         }
 

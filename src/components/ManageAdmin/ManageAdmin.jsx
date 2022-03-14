@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../App';
+import { Redirect } from "react-router-dom";
 
 const ManageAdmin = () => {
     const [userDetails, setUserDetails] = useContext(UserContext);
     const [admins, setAdmins] = useState([]);
     const [isUpdate, setIsUpdate] = useState(false);
-    const [newAdmin, setNewAdmin] = useState('')
+    const [newAdmin, setNewAdmin] = useState('');
     useEffect(() => {
         fetch('https://digital-diary-bd.herokuapp.com/all-admins')
             .then(res => res.json())
@@ -13,11 +14,13 @@ const ManageAdmin = () => {
     }, [isUpdate])
 
     // Handle add user
-    const handleAddAdmin = ()=>{
+    const handleAddAdmin = () => {
         if (newAdmin) {
             const newAdminDetails = {};
             newAdminDetails.email = newAdmin;
             newAdminDetails.addedBy = userDetails.email;
+            setIsUpdate(false);
+
             fetch('https://digital-diary-bd.herokuapp.com/add-admin', {
                 method: "POST",
                 headers: {
@@ -26,8 +29,8 @@ const ManageAdmin = () => {
                 body: JSON.stringify(newAdminDetails)
             })
                 .then(response => response.json())
-                .then(adminData =>{
-                    setIsUpdate(!isUpdate);
+                .then(adminData => {
+                    setIsUpdate(true);
                 })
         }
     }
@@ -49,11 +52,37 @@ const ManageAdmin = () => {
         }
     }
 
+
+
+    const handleAdminDelete = (e) => {
+        const dataTarget = e.target;
+        const adminId = dataTarget.getAttribute('data-admin-id');
+        setIsUpdate(false);
+        fetch('https://digital-diary-bd.herokuapp.com/remove-admin/?admin_id='+adminId, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if (data) {
+                // dataTarget.parentElement.parentElement.remove();
+                setIsUpdate(true);
+            }
+        })
+    }
+
+
     return (
         <section className="text-gray-600 body-font relative">
             <div className="container px-5 py-10 mx-auto">
                 <div className="lg:w-1/2 md:w-2/3 mx-auto">
                     <div className="flex flex-wrap -m-2">
+                        {
+                            !userDetails.isAdmin &&
+                            <Redirect to="/" />
+                        }
                         <div className="flex flex-col text-center w-full mb-1">
                             <h3 className="text-2xl font-medium title-font mb-4 text-gray-900">Add admin via email address</h3>
                         </div>
@@ -67,13 +96,13 @@ const ManageAdmin = () => {
                                     placeholder="mailaddress@domain.xyz"
                                     onChange={handleOnChange}
                                 />
-                                <p class="text-xs text-red-400 mt-3 hidden font-bold" id="alert-admin-email">Email is not valid.</p>
+                                <p className="text-xs text-red-400 mt-3 hidden font-bold" id="alert-admin-email">Email is not valid.</p>
                             </div>
                         </div>
                         <div className="p-2 w-full text-center">
                             <button
                                 className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
-                            onClick={handleAddAdmin}>Add Admin</button>
+                                onClick={handleAddAdmin}>Add Admin</button>
                         </div>
                         <div className="flex flex-col text-center w-full mb-2 mt-2">
                             <h3 className="text-2xl font-medium title-font mb-1 mt-4 text-gray-900">Admin List</h3>
@@ -96,8 +125,8 @@ const ManageAdmin = () => {
                                                     <td className="px-4 py-3">{email}</td>
                                                     <td className="px-4 py-3 ">{addedBy}</td>
                                                     <td className="px-4 py-3">
-                                                        <button className="mr-5 inline-flex items-center bg-red-500 border-0 py-1 px-3 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0 text-white mb-2">Delete</button>
-                                                        <button className="mr-5 inline-flex items-center bg-green-500 border-0 py-1 px-3 focus:outline-none hover:bg-green-600 rounded text-base mt-4 md:mt-0 text-white">Edit</button>
+                                                        <button className="mr-5 inline-flex items-center bg-red-500 border-0 py-1 px-3 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0 text-white mb-2" data-admin-id={_id} onClick={handleAdminDelete}>Delete</button>
+                                                        <button className="mr-5 inline-flex items-center bg-green-500 border-0 py-1 px-3 focus:outline-none hover:bg-green-600 rounded text-base mt-4 md:mt-0 text-white" data-admin-id={_id}>Edit</button>
                                                     </td>
                                                 </tr>
                                             )

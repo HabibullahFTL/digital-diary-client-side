@@ -1,5 +1,4 @@
 import React from 'react';
-import blogImg from '../../../img/blogs.jfif';
 import { Link } from "react-router-dom";
 
 const BlogCard = ({blogInfo}) => {
@@ -18,7 +17,7 @@ const BlogCard = ({blogInfo}) => {
                 <div className="p-6">
                     <Link to={"/view-blog/"+_id}>
                         <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{blogTitle}{isTitleLong && <>...</>}</h1>
-                        <p className="leading-relaxed mb-3">{blogDescription}{isTitleLong && <b> [Read More...]</b>}</p>
+                        <p className="leading-relaxed mb-3">{blogDescription}{isDescriptionLong && <b> [Read More...]</b>}</p>
                     </Link>
                 </div>
             </div>

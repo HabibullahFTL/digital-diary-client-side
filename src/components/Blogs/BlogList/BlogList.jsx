@@ -5,19 +5,39 @@ import { Redirect } from "react-router-dom";
 const BlogList = () => {
     const [userDetails, setUserDetails] = useContext(UserContext)
     const [blogs, setBlogs] = useState([])
+    const [isUpdate, setIsUpdate] = useState(false);
     useEffect(() => {
         fetch('https://digital-diary-bd.herokuapp.com/all-blogs')
             .then(res => res.json())
             .then(data => setBlogs(data))
-    }, [])
+    }, [isUpdate])
+
+    const handleBlogDelete = (e) => {
+        const dataTarget = e.target;
+        const blogId = dataTarget.getAttribute('data-blog-id');
+        setIsUpdate(false);
+        fetch('https://digital-diary-bd.herokuapp.com/remove-blog/?blog_id=' + blogId, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    // dataTarget.parentElement.parentElement.remove();
+                    setIsUpdate(true);
+                }
+            })
+    }
     return (
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-10 mx-auto">
                 <div className="lg:w-6/7 w-full mx-auto overflow-auto">
-                        {
-                            !userDetails.isAdmin &&
-                            <Redirect to="/" />
-                        }
+                    {
+                        !userDetails.isAdmin &&
+                        <Redirect to="/" />
+                    }
                     <table className="table-auto w-full text-left whitespace-no-wrap">
                         <thead>
                             <tr>
@@ -49,7 +69,10 @@ const BlogList = () => {
 
                                             </td>
                                             <td className="px-4 py-3">
-                                                <button className="mr-5 inline-flex items-center bg-red-500 border-0 py-1 px-3 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0 text-white mb-2">Delete</button>
+                                                <button
+                                                    className="mr-5 inline-flex items-center bg-red-500 border-0 py-1 px-3 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0 text-white mb-2"
+                                                    onClick={handleBlogDelete}
+                                                    data-blog-id={_id}>Delete</button>
                                                 <button className="mr-5 inline-flex items-center bg-green-500 border-0 py-1 px-3 focus:outline-none hover:bg-green-600 rounded text-base mt-4 md:mt-0 text-white">Edit</button>
                                             </td>
                                         </tr>

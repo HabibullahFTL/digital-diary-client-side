@@ -134,58 +134,58 @@ const Login = () => {
         }
     }
     return (
-        <section class="text-gray-600 body-font relative">
-            <div class="container px-5 py-10 mx-auto">
+        <section className="text-gray-600 body-font relative">
+            <div className="container px-5 py-10 mx-auto">
                 {
                     userDetails.success &&
                     <Redirect to="/" />
                 }
                 {
                     isSingIn && !userDetails.success &&
-                    <div class="lg:w-1/2 md:w-2/3 mx-auto">
-                        <div class="flex flex-wrap -m-2">
-                            <div class="flex flex-col text-center w-full mb-5">
-                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" id="login">Login to your account</h1>
+                    <div className="lg:w-1/2 md:w-2/3 mx-auto">
+                        <div className="flex flex-wrap -m-2">
+                            <div className="flex flex-col text-center w-full mb-5">
+                                <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" id="login">Login to your account</h1>
                             </div>
                             {
                                 loginInfo.error &&
-                                <div class="w-2/3 m-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    <span class="block sm:inline">{loginInfo.error}</span>
+                                <div className="w-2/3 m-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                    <span className="block sm:inline">{loginInfo.error}</span>
                                 </div>
                             }
                             {
                                 userDetails.error &&
-                                <div class="w-2/3 m-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    <span class="block sm:inline">{userDetails.error}</span>
+                                <div className="w-2/3 m-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                    <span className="block sm:inline">{userDetails.error}</span>
                                 </div>
                             }
-                            <div class="p-2 w-2/3 m-auto text-center">
-                                <div class="relative">
+                            <div className="p-2 w-2/3 m-auto text-center">
+                                <div className="relative">
                                     <input
                                         type="email"
                                         id="email"
                                         name="email"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                         placeholder="Email Address"
                                         onChange={updateDetails} />
-                                    <p class="text-xs text-red-400 mt-3 hidden font-bold" id="alert-email">Email is not valid.</p>
+                                    <p className="text-xs text-red-400 mt-3 hidden font-bold" id="alert-email">Email is not valid.</p>
                                 </div>
                             </div>
-                            <div class="p-2 w-2/3 m-auto text-center">
-                                <div class="relative">
+                            <div className="p-2 w-2/3 m-auto text-center">
+                                <div className="relative">
                                     <input
                                         type="password"
                                         id="password"
                                         name="password"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                         placeholder="Password"
                                         onChange={updateDetails} />
-                                    <p class="text-xs text-red-500 mt-3 hidden font-bold" id="alert-password">Password length must be 8 or more.</p>
+                                    <p className="text-xs text-red-500 mt-3 hidden font-bold" id="alert-password">Password length must be 8 or more.</p>
                                 </div>
                             </div>
-                            <div class="p-2 w-full text-center">
+                            <div className="p-2 w-full text-center">
                                 <button
-                                    class="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
+                                    className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
                                     onClick={signInHandler}>Login</button>
                                 <button
                                     className="text-green-500 my-5"
@@ -197,70 +197,70 @@ const Login = () => {
 
                 {
                     !isSingIn && !userDetails.success &&
-                    <div class="lg:w-1/2 md:w-2/3 mx-auto">
-                        <div class="flex flex-wrap -m-2">
-                            <div class="flex flex-col text-center w-full mb-5">
-                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" id="registration">Registration</h1>
+                    <div className="lg:w-1/2 md:w-2/3 mx-auto">
+                        <div className="flex flex-wrap -m-2">
+                            <div className="flex flex-col text-center w-full mb-5">
+                                <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" id="registration">Registration</h1>
                             </div>
-                            <div class="p-2 w-2/3 m-auto text-center">
+                            <div className="p-2 w-2/3 m-auto text-center">
                                 {
                                     userDetails.error &&
-                                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                        <span class="block sm:inline">{userDetails.error}</span>
+                                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                        <span className="block sm:inline">{userDetails.error}</span>
                                     </div>
                                 }
                             </div>
-                            <div class="p-2 w-2/3 m-auto text-center">
-                                <div class="relative">
+                            <div className="p-2 w-2/3 m-auto text-center">
+                                <div className="relative">
                                     <input
                                         type="text"
                                         id="name"
                                         name="displayName"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                         placeholder="Full Name"
                                         onChange={updateDetails} />
                                 </div>
                             </div>
-                            <div class="p-2 w-2/3 m-auto  text-center">
-                                <div class="relative">
+                            <div className="p-2 w-2/3 m-auto  text-center">
+                                <div className="relative">
                                     <input
                                         type="text"
                                         id="mobile"
                                         name="mobile"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                         placeholder="Mobile Number"
                                         onChange={updateDetails} />
-                                    <p class="text-xs text-red-500 mt-3 hidden  font-bold" id="alert-mobile-number"><b>Note:</b> Only Bangladeshi number accepts.</p>
+                                    <p className="text-xs text-red-500 mt-3 hidden  font-bold" id="alert-mobile-number"><b>Note:</b> Only Bangladeshi number accepts.</p>
                                 </div>
                             </div>
-                            <div class="p-2 w-2/3 m-auto text-center">
-                                <div class="relative">
+                            <div className="p-2 w-2/3 m-auto text-center">
+                                <div className="relative">
                                     <input
                                         type="email"
                                         id="regEmail"
                                         name="regEmail"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                         placeholder="Email Address"
                                         onChange={updateDetails} />
-                                    <p class="text-xs text-red-400 mt-3 hidden font-bold" id="alert-reg-email">Email is not valid.</p>
+                                    <p className="text-xs text-red-400 mt-3 hidden font-bold" id="alert-reg-email">Email is not valid.</p>
                                 </div>
                             </div>
-                            <div class="p-2 w-2/3 m-auto text-center">
-                                <div class="relative">
+                            <div className="p-2 w-2/3 m-auto text-center">
+                                <div className="relative">
                                     <input
                                         type="password"
                                         id="regPassword"
                                         name="regPassword"
-                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                         placeholder="Password"
                                         onChange={updateDetails} />
-                                    <p class="text-xs text-red-500 mt-3 hidden font-bold" id="alert-reg-password">Password length must be 8 or more.</p>
+                                    <p className="text-xs text-red-500 mt-3 hidden font-bold" id="alert-reg-password">Password length must be 8 or more.</p>
                                 </div>
                             </div>
-                            <div class="p-2 w-full text-center">
+                            <div className="p-2 w-full text-center">
                                 <button
                                     onClick={signUpHandler}
-                                    class="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">Registration</button>
+                                    className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">Registration</button>
                                 <button
                                     className="text-green-500 my-5"
                                     onClick={() => setIsSignIn(!isSingIn)}>Already hvae an account? Login Here</button>
